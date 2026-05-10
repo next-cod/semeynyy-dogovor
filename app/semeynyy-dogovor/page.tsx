@@ -9,82 +9,6 @@ import {
 } from "../_components/primitives";
 import { useChecklistState } from "../_components/useChecklistState";
 
-// ── SVG icons (no emoji) ────────────────────────────────────────────────────
-function IconHome() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1H15v-5h-6v5H4a1 1 0 0 1-1-1V10.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-function IconCart() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-function IconHeart() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-function IconBolt() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-function IconEdit() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-function IconCoin() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7"/>
-      <path d="M12 7v10M9.5 9.5C9.5 8.1 10.6 7 12 7s2.5 1.1 2.5 2.5c0 1.4-2.5 2.5-2.5 2.5s-2.5 1-2.5 2.5S10.6 17 12 17s2.5-1.1 2.5-2.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function IconCalendar() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.7"/>
-      <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function IconMessage() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-function IconTarget() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7"/>
-      <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1.7"/>
-      <circle cx="12" cy="12" r="1" fill="currentColor"/>
-    </svg>
-  );
-}
-function IconStar() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden width="18" height="18">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
 // ── Types ───────────────────────────────────────────────────────────────────
 type Goal = { name: string; amount: string; deadline: string };
 
@@ -203,7 +127,7 @@ function NavBar({ progress, open, setOpen }: { progress: number; open: boolean; 
   );
 }
 
-function SectionHeader({ title, done, total, label = "заполнено" }: { title: string; done: number; total: number; label?: string }) {
+function SectionHeader({ title, done, total, label = "заполнено", hideBar = false }: { title: string; done: number; total: number; label?: string; hideBar?: boolean }) {
   return (
     <div style={{ marginBottom: "16px" }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
@@ -214,7 +138,7 @@ function SectionHeader({ title, done, total, label = "заполнено" }: { t
           </span>
         )}
       </div>
-      {done > 0 && (
+      {!hideBar && done > 0 && (
         <div style={{ height: "3px", background: "var(--c-purple-soft)", borderRadius: "2px", marginTop: "8px" }}>
           <div style={{ height: "100%", width: `${Math.min((done / total) * 100, 100)}%`, background: done === total ? "#2E9E6E" : "var(--c-purple)", borderRadius: "2px", transition: "width 0.3s ease" }} />
         </div>
@@ -346,8 +270,7 @@ function PartnerFeelCard({ label, avatarLetter, feeling, surprised, fear, onChan
 }
 
 // Строка договорённости
-function AgreeRow({ icon, question, value, onChange, placeholder, children }: {
-  icon: React.ReactNode;
+function AgreeRow({ question, value, onChange, placeholder, children }: {
   question: string;
   value?: string;
   onChange?: (v: string) => void;
@@ -355,27 +278,17 @@ function AgreeRow({ icon, question, value, onChange, placeholder, children }: {
   children?: React.ReactNode;
 }) {
   return (
-    <div style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(200,179,224,0.35)" }}>
-      <div style={{
-        width: "36px", height: "36px", borderRadius: "10px",
-        background: "var(--c-purple-soft)", border: "1px solid var(--c-purple-line)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        color: "var(--c-purple)", flexShrink: 0,
-      }}>
-        {icon}
-      </div>
-      <div style={{ flex: 1 }}>
-        <div className="label" style={{ marginBottom: "8px" }}>{question}</div>
-        {children ?? (
-          <AutoTextarea
-            value={value ?? ""}
-            onChange={onChange!}
-            placeholder={placeholder}
-            minRows={1}
-            className="field-input field-input-single"
-          />
-        )}
-      </div>
+    <div style={{ padding: "14px 0", borderBottom: "1px solid rgba(200,179,224,0.35)" }}>
+      <div className="label" style={{ marginBottom: "8px" }}>{question}</div>
+      {children ?? (
+        <AutoTextarea
+          value={value ?? ""}
+          onChange={onChange!}
+          placeholder={placeholder}
+          minRows={1}
+          className="field-input field-input-single"
+        />
+      )}
     </div>
   );
 }
@@ -588,11 +501,11 @@ export default function SemeynyyDogovorPage() {
           </div>
 
           <div style={{ borderTop: "1px solid var(--c-purple-line)", marginTop: "4px" }}>
-            <AgreeRow icon={<IconHome />} question="Аренда / ипотека" value={state.agreeRent} onChange={v => update("agreeRent", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам / сумма" />
-            <AgreeRow icon={<IconCart />} question="Продукты и еда" value={state.agreeFood} onChange={v => update("agreeFood", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам" />
-            <AgreeRow icon={<IconHeart />} question="Дети (школа, кружки, одежда)" value={state.agreeKids} onChange={v => update("agreeKids", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам" />
-            <AgreeRow icon={<IconBolt />} question="Коммунальные платежи" value={state.agreeUtils} onChange={v => update("agreeUtils", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам" />
-            <AgreeRow icon={<IconEdit />} question="Другое (впишите своё)" value={state.agreeOther} onChange={v => update("agreeOther", v)} placeholder="Статья расходов - кто платит" />
+            <AgreeRow question="Аренда / ипотека" value={state.agreeRent} onChange={v => update("agreeRent", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам / сумма" />
+            <AgreeRow question="Продукты и еда" value={state.agreeFood} onChange={v => update("agreeFood", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам" />
+            <AgreeRow question="Дети (школа, кружки, одежда)" value={state.agreeKids} onChange={v => update("agreeKids", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам" />
+            <AgreeRow question="Коммунальные платежи" value={state.agreeUtils} onChange={v => update("agreeUtils", v)} placeholder="Партнёр 1 / Партнёр 2 / пополам" />
+            <AgreeRow question="Другое (впишите своё)" value={state.agreeOther} onChange={v => update("agreeOther", v)} placeholder="Статья расходов - кто платит" />
           </div>
 
           <div className="flex items-start gap-3 mt-10 mb-3">
@@ -601,7 +514,7 @@ export default function SemeynyyDogovorPage() {
           </div>
 
           <div style={{ borderTop: "1px solid var(--c-purple-line)", marginTop: "4px" }}>
-            <AgreeRow icon={<IconCoin />} question="Сумма без отчёта - каждый тратит сам, без обсуждения">
+            <AgreeRow question="Сумма без отчёта - каждый тратит сам, без обсуждения">
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px" }}>
                 <input
                   type="number"
@@ -618,8 +531,8 @@ export default function SemeynyyDogovorPage() {
                 <span style={{ fontSize: "16px", color: "var(--c-muted)" }}>₽</span>
               </div>
             </AgreeRow>
-            <AgreeRow icon={<IconCalendar />} question="Когда и как часто говорим о деньгах" value={state.whenTalk} onChange={v => update("whenTalk", v)} placeholder="Каждое воскресенье за завтраком, 15 минут" />
-            <AgreeRow icon={<IconMessage />} question="Наше правило при разговоре о деньгах" value={state.talkRule} onChange={v => update("talkRule", v)} placeholder="Не обвинять, говорить о чувствах, не перебивать..." />
+            <AgreeRow question="Когда и как часто говорим о деньгах" value={state.whenTalk} onChange={v => update("whenTalk", v)} placeholder="Каждое воскресенье за завтраком, 15 минут" />
+            <AgreeRow question="Наше правило при разговоре о деньгах" value={state.talkRule} onChange={v => update("talkRule", v)} placeholder="Не обвинять, говорить о чувствах, не перебивать..." />
           </div>
 
           <PageFooter index={3} total={TOTAL_SECTIONS} />
@@ -660,7 +573,6 @@ export default function SemeynyyDogovorPage() {
               marginBottom: "28px",
             }}
           >
-            <IconTarget />
             добавить цель
           </button>
 
@@ -700,7 +612,7 @@ export default function SemeynyyDogovorPage() {
 
         {/* ══ РАЗДЕЛ 5: Задание на неделю ════════════════════════════════════ */}
         <section id="p6" className="section">
-          <SectionHeader title="Задание на эту неделю" done={weekDoneCount} total={4} label="выполнено" />
+          <SectionHeader title="Задание на эту неделю" done={weekDoneCount} total={4} label="выполнено" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
             Маленькая победа, которую делаете вместе.
           </p>
@@ -754,11 +666,6 @@ export default function SemeynyyDogovorPage() {
                 <div style={{ fontSize: "14px", color: "var(--c-muted)", marginTop: "6px", fontStyle: "italic" }}>дата: _______________</div>
               </div>
             ))}
-          </div>
-
-          <div className="quote-card mt-10" style={{ background: "var(--c-purple-soft)" }}>
-            «Дисциплина в деньгах - это свобода в отношениях. Один день дисциплины не решает ничего, но 90 дней дисциплины меняют качество ваших отношений»
-            <div style={{ marginTop: "10px", fontSize: "16px", color: "var(--c-gold)" }}>- Наталья Батаева @MethodBataeva</div>
           </div>
 
           <div className="final-actions no-print">
