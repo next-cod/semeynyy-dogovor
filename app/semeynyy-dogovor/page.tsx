@@ -48,6 +48,7 @@ const INITIAL: State = {
 };
 
 const TOTAL_SECTIONS = 5;
+const PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 function num(v: string) { return parseFloat(v) || 0; }
@@ -74,7 +75,7 @@ function CoverPage() {
     >
       <div className="mb-7" style={{ display: "flex", justifyContent: "center" }}>
         <img
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-nalich.png`}
+          src={`${PUBLIC_BASE_PATH}/logo-nalich.png`}
           alt="НаЛичность"
           className="cover-logo"
         />
@@ -496,7 +497,7 @@ export default function SemeynyyDogovorPage() {
           </p>
 
           <div className="flex items-start gap-3 mt-8 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Кто за что платит</div>
           </div>
 
@@ -509,7 +510,7 @@ export default function SemeynyyDogovorPage() {
           </div>
 
           <div className="flex items-start gap-3 mt-10 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Правила общения о деньгах</div>
           </div>
 
@@ -546,7 +547,7 @@ export default function SemeynyyDogovorPage() {
           </p>
 
           <div className="flex items-start gap-3 mt-8 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Общие цели</div>
           </div>
 
@@ -577,7 +578,7 @@ export default function SemeynyyDogovorPage() {
           </button>
 
           <div className="flex items-start gap-3 mt-8 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Долг, который закрываем первым</div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
@@ -592,7 +593,7 @@ export default function SemeynyyDogovorPage() {
           </div>
 
           <div className="flex items-start gap-3 mt-8 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>От чего отказываемся вместе</div>
           </div>
           <div className="field-row">
@@ -600,7 +601,7 @@ export default function SemeynyyDogovorPage() {
           </div>
 
           <div className="flex items-start gap-3 mt-8 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Наша общая мечта</div>
           </div>
           <div className="field-row">
@@ -655,7 +656,7 @@ export default function SemeynyyDogovorPage() {
 
           {/* Подписи */}
           <div className="flex items-start gap-3 mt-10 mb-3">
-            <div className="arrow-bullet" aria-hidden><img src="../arow.svg" alt="" /></div>
+            <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Договор подписан</div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "28px", marginTop: "8px" }}>
