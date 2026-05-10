@@ -422,7 +422,7 @@ export default function SemeynyyDogovorPage() {
 
         {/* ══ РАЗДЕЛ 1: Финансы ══════════════════════════════════════════════ */}
         <section id="p2" className="section">
-          <SectionHeader title="Аудит денег" done={finDone} total={8} label="полей" />
+          <SectionHeader title="Аудит денег" done={finDone} total={8} label="полей" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
             Эти таблицы заполняйте вместе. Воздержитесь от любых высказываний в процессе.
           </p>
@@ -456,7 +456,7 @@ export default function SemeynyyDogovorPage() {
 
         {/* ══ РАЗДЕЛ 2: Чувства ══════════════════════════════════════════════ */}
         <section id="p3" className="section">
-          <SectionHeader title="Реакция на цифры" done={feelDone} total={6} label="ответов" />
+          <SectionHeader title="Реакция на цифры" done={feelDone} total={6} label="ответов" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
             Прочитайте молча листы друг друга. Не комментируйте сразу.
           </p>
@@ -490,7 +490,7 @@ export default function SemeynyyDogovorPage() {
 
         {/* ══ РАЗДЕЛ 3: Договорённости ═══════════════════════════════════════ */}
         <section id="p4" className="section">
-          <SectionHeader title="Взрослые договорённости" done={agreeDone} total={8} label="пунктов" />
+          <SectionHeader title="Взрослые договорённости" done={agreeDone} total={8} label="пунктов" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
             Кто за что отвечает и как разговариваем о деньгах.
           </p>
@@ -540,7 +540,7 @@ export default function SemeynyyDogovorPage() {
 
         {/* ══ РАЗДЕЛ 4: 90 дней ══════════════════════════════════════════════ */}
         <section id="p5" className="section">
-          <SectionHeader title="Общий план на 90 дней" done={planDone} total={4} label="пунктов" />
+          <SectionHeader title="Общий план на 90 дней" done={planDone} total={4} label="пунктов" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
             Цели, которые объединяют, а не разделяют.
           </p>
