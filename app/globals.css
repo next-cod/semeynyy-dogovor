@@ -2840,6 +2840,102 @@
   font-style: italic;
 }
 
+.checklist-root .signature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 12px;
+}
+
+.checklist-root .signature-card {
+  min-width: 0;
+}
+
+.checklist-root .signature-partner {
+  display: grid;
+  gap: 26px;
+  font-size: 20px;
+  color: var(--c-purple-deep);
+}
+
+.checklist-root .signature-name-input,
+.checklist-root .signature-date-input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--c-purple-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--c-purple-deep);
+  outline: none;
+  font-family: var(--font-cormorant), serif;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.checklist-root .signature-name-input {
+  height: 44px;
+  padding: 0 0 8px;
+  font-size: 24px;
+  font-style: italic;
+}
+
+.checklist-root .signature-name-input::placeholder {
+  color: color-mix(in srgb, var(--c-muted) 74%, transparent);
+  font-family: var(--font-forum), serif;
+  font-style: normal;
+}
+
+.checklist-root .signature-name-input:focus::placeholder,
+.checklist-root .signature-date-input:focus::placeholder {
+  color: transparent;
+}
+
+.checklist-root .signature-name-input:focus,
+.checklist-root .signature-date-input:focus {
+  border-color: var(--c-purple);
+  box-shadow: 0 2px 0 rgba(116, 68, 159, 0.12);
+}
+
+.checklist-root .signature-date-row {
+  display: grid;
+  grid-template-columns: auto minmax(138px, 180px);
+  align-items: end;
+  gap: 7px;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 22px;
+  color: var(--c-muted);
+  font-size: 17px;
+  font-style: italic;
+}
+
+.checklist-root .signature-date-input {
+  height: 30px;
+  padding: 0 0 5px;
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.checklist-root .signature-date-input::placeholder {
+  color: color-mix(in srgb, var(--c-muted) 68%, transparent);
+}
+
+@media (max-width: 640px) {
+  .checklist-root .signature-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .checklist-root .signature-partner {
+    gap: 20px;
+  }
+
+  .checklist-root .signature-date-row {
+    margin-top: 18px;
+  }
+}
+
 /* Note block */
 .checklist-root .note-italic {
   font-size: 16px;
@@ -2965,4 +3061,3 @@
     width: 90px;
   }
 }
-

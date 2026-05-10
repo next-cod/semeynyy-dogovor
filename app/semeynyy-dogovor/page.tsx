@@ -32,6 +32,9 @@ type State = {
   cutsTogether: string; sharedDream: string;
   // Неделя
   weekDone: boolean[];
+  // Подписи
+  p1SignatureName: string; p1SignatureDate: string;
+  p2SignatureName: string; p2SignatureDate: string;
 };
 
 const INITIAL: State = {
@@ -45,6 +48,8 @@ const INITIAL: State = {
   debtName: "", debtAmount: "",
   cutsTogether: "", sharedDream: "",
   weekDone: [false, false, false, false],
+  p1SignatureName: "", p1SignatureDate: "",
+  p2SignatureName: "", p2SignatureDate: "",
 };
 
 const TOTAL_SECTIONS = 5;
@@ -57,6 +62,13 @@ function fmtRub(n: number) {
 }
 function fmtBalance(n: number) {
   return (n >= 0 ? "+" : "") + n.toLocaleString("ru-RU") + " ₽";
+}
+function formatSignatureDate(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+  const day = digits.slice(0, 2);
+  const month = digits.slice(2, 4);
+  const year = digits.slice(4, 8);
+  return [day, month, year].filter(Boolean).join("/");
 }
 
 // ── Sub-components ───────────────────────────────────────────────────────────
@@ -290,6 +302,50 @@ function AgreeRow({ question, value, onChange, placeholder, children }: {
           className="field-input field-input-single"
         />
       )}
+    </div>
+  );
+}
+
+function SignatureCard({
+  partner,
+  name,
+  date,
+  onNameChange,
+  onDateChange,
+}: {
+  partner: string;
+  name: string;
+  date: string;
+  onNameChange: (value: string) => void;
+  onDateChange: (value: string) => void;
+}) {
+  return (
+    <div className="signature-card">
+      <label className="signature-partner">
+        <span>{partner}</span>
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => onNameChange(event.target.value)}
+          placeholder="ФИО"
+          className="signature-name-input"
+          autoComplete="name"
+        />
+      </label>
+      <label className="signature-date-row">
+        <span>дата:</span>
+        <input
+          type="text"
+          value={date}
+          onChange={(event) => onDateChange(formatSignatureDate(event.target.value))}
+          placeholder="ДД/ММ/ГГГГ"
+          className="signature-date-input"
+          inputMode="numeric"
+          maxLength={10}
+          autoComplete="off"
+          aria-label={`Дата подписи, ${partner}`}
+        />
+      </label>
     </div>
   );
 }
@@ -659,14 +715,21 @@ export default function SemeynyyDogovorPage() {
             <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Договор подписан</div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "28px", marginTop: "8px" }}>
-            {["Партнёр 1", "Партнёр 2"].map(p => (
-              <div key={p}>
-                <div className="label">{p}</div>
-                <div style={{ height: "40px", borderBottom: "1.5px solid var(--c-purple-line)", marginTop: "6px" }} />
-                <div style={{ fontSize: "14px", color: "var(--c-muted)", marginTop: "6px", fontStyle: "italic" }}>дата: _______________</div>
-              </div>
-            ))}
+          <div className="signature-grid">
+            <SignatureCard
+              partner="Партнёр 1"
+              name={state.p1SignatureName}
+              date={state.p1SignatureDate}
+              onNameChange={(value) => update("p1SignatureName", value)}
+              onDateChange={(value) => update("p1SignatureDate", value)}
+            />
+            <SignatureCard
+              partner="Партнёр 2"
+              name={state.p2SignatureName}
+              date={state.p2SignatureDate}
+              onNameChange={(value) => update("p2SignatureName", value)}
+              onDateChange={(value) => update("p2SignatureDate", value)}
+            />
           </div>
 
           <div className="final-actions no-print">
