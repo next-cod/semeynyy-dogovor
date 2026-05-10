@@ -163,29 +163,17 @@ function SectionHeader({ title, done, total, label = "заполнено", hideB
 // Инпут-цифра (доход/расход)
 function NumField({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-      <label className="label" style={{ flex: 1, margin: 0, fontSize: "18px" }}>{label}</label>
-      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+    <div className="num-field">
+      <label className="label num-field-label">{label}</label>
+      <div className="num-field-control">
         <input
           type="number"
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder="0"
-          style={{
-            width: "120px",
-            padding: "7px 10px",
-            border: "1px solid var(--c-purple-line)",
-            borderRadius: "10px",
-            background: "var(--c-paper)",
-            fontFamily: "var(--font-cormorant), serif",
-            fontSize: "18px",
-            color: "var(--c-purple-deep)",
-            outline: "none",
-            textAlign: "right",
-            MozAppearance: "textfield",
-          } as React.CSSProperties}
+          className="num-field-input"
         />
-        <span style={{ fontSize: "16px", color: "var(--c-muted)" }}>₽</span>
+        <span className="num-field-currency">₽</span>
       </div>
     </div>
   );
@@ -198,7 +186,7 @@ function PartnerFinanceCard({ label, avatarLetter, income1, income2, expense, pe
   onChange: (key: string, v: string) => void;
 }) {
   return (
-    <div style={{ flex: 1, minWidth: 0 }}>
+    <div className="partner-card">
       <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
         <div style={{
           width: "34px", height: "34px", borderRadius: "50%",
@@ -220,28 +208,15 @@ function PartnerFinanceCard({ label, avatarLetter, income1, income2, expense, pe
 // Итоговая строка финансов
 function TotalsBlock({ income, expenses, balance }: { income: number; expenses: number; balance: number }) {
   return (
-    <div style={{
-      marginTop: "28px",
-      borderTop: "1px solid var(--c-purple-line)",
-      paddingTop: "20px",
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: "12px",
-    }}>
+    <div className="totals-grid">
       {[
         { label: "Семейный доход", val: fmtRub(income), color: "var(--c-purple-deep)" },
         { label: "Общие расходы", val: fmtRub(expenses), color: "var(--c-purple-deep)" },
         { label: "Остаток", val: fmtBalance(balance), color: balance >= 0 ? "#2e9e6e" : "#c54242" },
       ].map(({ label, val, color }) => (
-        <div key={label} style={{
-          padding: "14px 16px",
-          background: "var(--c-purple-soft)",
-          borderRadius: "14px",
-          border: "1px solid var(--c-purple-line)",
-          textAlign: "center",
-        }}>
-          <div style={{ fontSize: "14px", color: "var(--c-muted)", marginBottom: "6px" }}>{label}</div>
-          <div style={{ fontFamily: "var(--font-forum), serif", fontSize: "22px", color }}>{val}</div>
+        <div key={label} className="total-card">
+          <div className="total-card-label">{label}</div>
+          <div className="total-card-value" style={{ color }}>{val}</div>
         </div>
       ))}
     </div>
@@ -255,7 +230,7 @@ function PartnerFeelCard({ label, avatarLetter, feeling, surprised, fear, onChan
   onChange: (key: "feeling" | "surprised" | "fear", v: string) => void;
 }) {
   return (
-    <div style={{ flex: 1, minWidth: 0 }}>
+    <div className="partner-card">
       <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
         <div style={{
           width: "34px", height: "34px", borderRadius: "50%",
@@ -484,7 +459,7 @@ export default function SemeynyyDogovorPage() {
             Это заполняйте вместе. Воздержитесь от любых высказываний в процессе.
           </p>
 
-          <div style={{ display: "flex", gap: "32px", flexWrap: "wrap", marginTop: "24px" }}>
+          <div className="partner-comparison">
             <PartnerFinanceCard
               label="Партнёр 1"
               avatarLetter="Я"
@@ -494,7 +469,7 @@ export default function SemeynyyDogovorPage() {
               personal={state.p1personal}
               onChange={setP1}
             />
-            <div style={{ width: "1px", background: "var(--c-purple-line)", alignSelf: "stretch" }} />
+            <div className="partner-divider" />
             <PartnerFinanceCard
               label="Партнёр 2"
               avatarLetter="П"
@@ -518,7 +493,7 @@ export default function SemeynyyDogovorPage() {
             Прочитайте молча то, что написал каждый. Не комментируйте сразу.
           </p>
 
-          <div style={{ display: "flex", gap: "32px", flexWrap: "wrap", marginTop: "24px" }}>
+          <div className="partner-comparison">
             <PartnerFeelCard
               label="Партнёр 1"
               avatarLetter="Я"
@@ -527,7 +502,7 @@ export default function SemeynyyDogovorPage() {
               fear={state.p1fear}
               onChange={(key, v) => update(`p1${key}` as keyof State, v as never)}
             />
-            <div style={{ width: "1px", background: "var(--c-purple-line)", alignSelf: "stretch" }} />
+            <div className="partner-divider" />
             <PartnerFeelCard
               label="Партнёр 2"
               avatarLetter="П"
@@ -637,7 +612,7 @@ export default function SemeynyyDogovorPage() {
             <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
             <div className="h2" style={{ paddingTop: "3px" }}>Долг, который закрываем первым</div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+          <div className="debt-fields-grid">
             <div className="field-row">
               <label className="label">Кому / название</label>
               <AutoTextarea value={state.debtName} onChange={v => update("debtName", v)} placeholder="Кредит в Сбербанке..." minRows={1} className="field-input field-input-single" />
