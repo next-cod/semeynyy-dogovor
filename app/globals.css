@@ -2273,7 +2273,23 @@
 
 /* ── Family contract specific styles ── */
 
-/* Cover hero */
+/* Partner two-column layout — collapse on mobile */
+@media (max-width: 640px) {
+  .partner-cols-wrap {
+    flex-direction: column !important;
+  }
+  .partner-cols-divider {
+    display: none !important;
+  }
+  .debt-two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .sign-two-col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Legacy family-cover (unused but kept) ── */
 .checklist-root .family-cover {
   background: linear-gradient(160deg, #2e1052 0%, #4a1f7a 55%, #6c3299 100%);
   color: #fff;
