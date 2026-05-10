@@ -707,6 +707,37 @@ export default function SemeynyyDogovorPage() {
             />
           </div>
 
+          <div className="quote-card mt-10" style={{ background: "var(--c-purple-soft)" }}>
+            <div className="flex items-start gap-3">
+              <div className="arrow-bullet" aria-hidden><img src={`${PUBLIC_BASE_PATH}/arow.svg`} alt="" /></div>
+              <div>
+                Этот чек-лист - один из инструментов выстраивания денежных договорённостей в паре.
+                Чтобы глубже разобраться в своих жизненных сценариях и способах реагирования,
+                читайте книгу Натальи Батаевой «На Личность идёт НаЛичность» или проходите
+                онлайн-курс.
+              </div>
+            </div>
+          </div>
+
+          <div className="cta-buttons no-print">
+            <a
+              href="https://na-lichnost.ru/book"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-btn cta-btn--book"
+            >
+              Книга «На Личность идёт НаЛичность»
+            </a>
+            <a
+              href="https://na-lichnost.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-btn cta-btn--course"
+            >
+              Онлайн-курс
+            </a>
+          </div>
+
           <div className="final-actions no-print">
             <PrintButton />
             <ResetButton onReset={reset} />

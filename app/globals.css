@@ -535,7 +535,7 @@
     padding: 5px 14px;
   }
 
-  /* таблица долгов — горизонтальный скролл */
+  /* таблица долгов - горизонтальный скролл */
   .checklist-root .table-purple {
     table-layout: auto;
     min-width: 480px;
@@ -2393,7 +2393,7 @@
   gap: 16px;
 }
 
-/* Partner two-column layout — collapse on mobile */
+/* Partner two-column layout - collapse on mobile */
 @media (max-width: 720px) {
   .checklist-root .partner-comparison,
   .partner-cols-wrap {
