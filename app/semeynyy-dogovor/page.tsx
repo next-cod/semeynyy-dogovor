@@ -481,7 +481,7 @@ export default function SemeynyyDogovorPage() {
         <section id="p2" className="section">
           <SectionHeader title="Аудит денег" done={finDone} total={8} label="полей" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
-            Эти таблицы заполняйте вместе. Воздержитесь от любых высказываний в процессе.
+            Это заполняйте вместе. Воздержитесь от любых высказываний в процессе.
           </p>
 
           <div style={{ display: "flex", gap: "32px", flexWrap: "wrap", marginTop: "24px" }}>
@@ -515,7 +515,7 @@ export default function SemeynyyDogovorPage() {
         <section id="p3" className="section">
           <SectionHeader title="Реакция на цифры" done={feelDone} total={6} label="ответов" hideBar />
           <p className="audit-helper-text italic" style={{ color: "var(--c-muted)" }}>
-            Прочитайте молча листы друг друга. Не комментируйте сразу.
+            Прочитайте молча то, что написал каждый. Не комментируйте сразу.
           </p>
 
           <div style={{ display: "flex", gap: "32px", flexWrap: "wrap", marginTop: "24px" }}>
